@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <catalog_category_default><!--Non Anchor--></catalog_category_default>
+    <catalog_category_layered><!--Anchor--></catalog_category_layered>
+</layout>

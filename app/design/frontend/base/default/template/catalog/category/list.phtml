@@ -1,0 +1,29 @@
+<?php
+/**
+ * @see Ip_Categorywidget_Block_List
+ */
+?>
+<pre>
+<?php
+$_categoryCollection = $this->getCategoryCollection();
+?>
+</pre>
+<?php if(!$_categoryCollection->count()): ?>
+    <p class="note-msg"><?php echo $this->__('There are no child categories.') ?></p>
+<?php else: ?>
+    <?php $_columnCount = $this->getColumnCount(); ?>
+    <?php $i=0; foreach ($_categoryCollection as $_category): ?>
+        <?php
+        $_category = Mage::getModel('catalog/category')->load($_category->getId());
+        $url = Mage::getUrl($_category->getUrlPath());
+        ?>
+        <?php if ($i++%$_columnCount==0): ?><ul class="category-grid"><?php endif ?>
+            <li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">
+                <a href="<?php echo $url;?>" class="category-image"><img src="<?php echo $this->getResizedImage($_category->getThumbnail(), 248);?>" width="248" height="248" /></a>
+                <h2 class="category-name"><a href="<?php echo $url;?>" ><?php echo $_category->getName();?></a></h2>
+                <p><?php echo $_category->getDescription();?></p>
+            </li>
+        <?php if ($i%$_columnCount==0 || $i==$_collectionSize): ?></ul><?php endif ?>
+    <?php endforeach ?>
+    <script type="text/javascript">decorateGeneric($$('ul.category-grid'), ['odd','even','first','last'])</script>
+<?php endif; ?>

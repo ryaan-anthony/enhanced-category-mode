@@ -1,14 +1,13 @@
 <?php
 
-class Ip_Categorymode_Block_List
-    extends Mage_Core_Block_Template
-    implements Mage_Widget_Block_Interface
+class Ip_Categorymode_Block_List extends Mage_Core_Block_Template
 {
 
     function __construct()
     {
         $this->setTemplate('catalog/category/list.phtml');
         parent::__construct();
+        $this->setColumnCount(3);
     }
 
     public function getResizedImage($image, $width, $height = null, $quality = 100)
